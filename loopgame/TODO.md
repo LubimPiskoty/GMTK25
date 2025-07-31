@@ -1,0 +1,1 @@
+- Change the character movement into a baseclass and change the movement into turn based move to next point along path
