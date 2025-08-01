@@ -1,1 +1,2 @@
-- Change the character movement into a baseclass and change the movement into turn based move to next point along path
+- [ ] Change the character movement into a baseclass and change the movement into turn based move to next point along path
+- [ ] Animate the character movement
