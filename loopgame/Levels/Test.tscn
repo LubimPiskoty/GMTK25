@@ -1,7 +1,7 @@
 [gd_scene load_steps=27 format=4 uid="uid://drseqo5d34qqy"]
 
 [ext_resource type="TileSet" uid="uid://hi58000nogfa" path="res://Tilesets/DungeonTileset.tres" id="1_ah0qf"]
-[ext_resource type="Script" uid="uid://vqk47q0effbi" path="res://Levels/TurnManager.gd" id="1_qhip6"]
+[ext_resource type="Script" uid="uid://vqk47q0effbi" path="res://Scripts/TurnManager.gd" id="1_qhip6"]
 [ext_resource type="Script" uid="uid://dhh0x3k6shpbf" path="res://Scripts/pathfinder.gd" id="1_xfdtu"]
 [ext_resource type="PackedScene" uid="uid://bpsxrynscsawd" path="res://Prefabs/character.tscn" id="3_f8gr7"]
 [ext_resource type="Script" uid="uid://csi6n5w7bikdw" path="res://Scripts/CharacterMovement.gd" id="5_qhip6"]
@@ -192,7 +192,7 @@ _data = {
 
 [node name="Node2D" type="Node2D"]
 
-[node name="TurnManager" type="Node" parent="."]
+[node name="TurnManager" type="Node2D" parent="."]
 script = ExtResource("1_qhip6")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -203,7 +203,7 @@ tile_set = ExtResource("1_ah0qf")
 process_mode = 3
 script = ExtResource("1_xfdtu")
 tile_map = NodePath("../TileMapLayer")
-gridSize = 16
+gridSize = 11
 
 [node name="Character" parent="." instance=ExtResource("3_f8gr7")]
 position = Vector2(152, 137)
@@ -215,6 +215,28 @@ frame = 0
 shadow_enabled = true
 shadow_filter_smooth = 1.5
 texture = SubResource("GradientTexture2D_cfw56")
+
+[node name="Zombie3" type="Node2D" parent="."]
+position = Vector2(121, 26)
+script = ExtResource("5_qhip6")
+speed = 16
+
+[node name="AnimationTree" type="AnimationTree" parent="Zombie3"]
+tree_root = SubResource("AnimationNodeStateMachine_qhip6")
+anim_player = NodePath("../AnimationPlayer")
+parameters/MovementBlend/blend_position = Vector2(-0.000906646, -0.0108303)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Zombie3"]
+active = false
+libraries = {
+&"": SubResource("AnimationLibrary_ibsvt")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="Zombie3"]
+texture = ExtResource("6_qhip6")
+hframes = 8
+vframes = 15
+frame = 2
 
 [node name="Zombie" type="Node2D" parent="."]
 position = Vector2(24, 137)
@@ -236,6 +258,29 @@ libraries = {
 texture = ExtResource("6_qhip6")
 hframes = 8
 vframes = 15
+frame = 1
+
+[node name="Zombie2" type="Node2D" parent="."]
+position = Vector2(89, 74)
+script = ExtResource("5_qhip6")
+speed = 16
+
+[node name="AnimationTree" type="AnimationTree" parent="Zombie2"]
+tree_root = SubResource("AnimationNodeStateMachine_qhip6")
+anim_player = NodePath("../AnimationPlayer")
+parameters/MovementBlend/blend_position = Vector2(-0.000906646, -0.0108303)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Zombie2"]
+active = false
+libraries = {
+&"": SubResource("AnimationLibrary_ibsvt")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="Zombie2"]
+texture = ExtResource("6_qhip6")
+hframes = 8
+vframes = 15
+frame = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(96, 72)
@@ -243,7 +288,6 @@ zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
-color = Color(0.497474, 0.497474, 0.497474, 1)
+color = Color(0.454524, 0.454524, 0.454524, 1)
 
 [editable path="Character"]
